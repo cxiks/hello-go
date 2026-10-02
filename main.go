@@ -8,11 +8,16 @@ import (
 	"hello-go/greeting"
 )
 
+// version перезаписывается через -ldflags "-X main.version=..." во время сборки.
+// Локально остаётся "dev".
+var version = "dev"
+
 func main() {
-	fmt.Println("Hello from Go in Docker! 🐹🐳")
+	fmt.Printf("hello-go version %s\n", version)
+	fmt.Println("Hello from Go! 🐹")
 	fmt.Printf("OS: %s\n", runtime.GOOS)
 	fmt.Printf("Arch: %s\n", runtime.GOARCH)
-	fmt.Println(greeting.Greet("Docker"))
+	fmt.Println(greeting.Greet("GitHub"))
 	fmt.Printf("Sum 1..10 = %d\n", greeting.SumRange(1, 10))
 
 	if len(os.Args) > 1 {
